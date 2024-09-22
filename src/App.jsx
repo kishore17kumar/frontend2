@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import './App.css'
 
 function App() {
   const [jsonInput, setJsonInput] = useState('');
@@ -39,8 +40,8 @@ function App() {
   };
 
   return (
-    <div>
-      <h1>Input</h1>
+    <div className='container'>
+      <h1 className='heading'>Input</h1>
       <textarea
         rows="4"
         cols="50"
@@ -48,7 +49,7 @@ function App() {
         onChange={(e) => setJsonInput(e.target.value)}
         placeholder="Enter JSON here"
       />
-      <button onClick={handleSubmit} disabled={loading}>
+      <button onClick={handleSubmit} disabled={loading} className='button'>
         {loading ? 'Submitting...' : 'Submit'}
       </button>
 
@@ -56,7 +57,7 @@ function App() {
 
       {response && (
         <>
-          <select multiple onChange={handleFilterChange}>
+          <select multiple onChange={handleFilterChange} className='select'>
             <option value="Alphabets">Alphabets</option>
             <option value="Numbers">Numbers</option>
             <option value="Highest lowercase alphabet">Highest lowercase alphabet</option>
