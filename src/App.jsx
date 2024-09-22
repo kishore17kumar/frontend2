@@ -13,7 +13,7 @@ function App() {
     setLoading(true); // Start loading
     try {
       const parsedJson = JSON.parse(jsonInput);
-      const res = await axios.post('http://localhost:3000/bfhl', parsedJson);
+      const res = await axios.post('https://backend-cxvy.onrender.com', parsedJson);
       setResponse(res.data);
     } catch (error) {
       setError('Invalid JSON or API error'); // Set error message
