@@ -8,19 +8,34 @@ function App() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
+  // const handleSubmit = async () => {
+  //   setError(''); // Reset error state
+  //   setLoading(true); // Start loading
+  //   try {
+  //     const parsedJson = JSON.parse(jsonInput.trim());
+  //     const res = await axios.post('https://backend-cxvy.onrender.com/bfhl', parsedJson);
+  //     setResponse(res.data);
+  //   } catch (error) {
+  //     setError('Invalid JSON or API error'); // Set error message
+  //     console.error('Error:', error);
+  //   } finally {
+  //     setLoading(false); // End loading
+  //   }
+  // };
   const handleSubmit = async () => {
     setError(''); // Reset error state
     setLoading(true); // Start loading
     try {
-      const parsedJson = JSON.parse(jsonInput);
-      const res = await axios.post('https://backend-cxvy.onrender.com/bfhl', parsedJson);
-      setResponse(res.data);
+      const parsedJson = JSON.parse(jsonInput); // Parse JSON input
+      const payload = { data: parsedJson }; // Wrap in 'data' key
+      const res = await axios.post('https://backend-cxvy.onrender.com/bfhl', payload);
+      setResponse(res.data); // Set response data
     } catch (error) {
       setError('Invalid JSON or API error'); // Set error message
-      console.error('Error:', error);
+      console.error('Error:', error.response ? error.response.data : error.message);
     } finally {
-      setLoading(false); // End loading
-    }
+      setLoading(false); // End loading
+    }
   };
 
   const handleFilterChange = (e) => {
