@@ -14,6 +14,9 @@ function App() {
     setLoading(true); 
     try {
       const parsedJson = JSON.parse(jsonInput);
+      if (!Array.isArray(parsedJson)) {
+        throw new Error("'data' should be an array");
+      }  
       const payload = { data: parsedJson };
       const res = await axios.post('https://backend-cxvy.onrender.com/bfhl', payload);
       setResponse(res.data); 
